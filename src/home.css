@@ -1,0 +1,269 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #1f89df;
+    color: white;
+    text-align: left;
+    padding: 15px;
+    font-size: large;
+    display: flex;
+}
+
+.navbar {
+    background-color: rgb(35, 34, 34);
+    display: flex;
+}
+
+nav button {
+    background-color: rgb(35, 34, 34);
+    color: white;
+    cursor: pointer;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-weight: bolder;
+    font-size: medium;
+}
+
+.nav-icon {
+    margin-left: auto; /* Push the image to the far right */
+}
+
+.icon-image {
+    height: 30px; /* Adjust the height as needed */
+    width: 30px; /* Adjust the width as needed */
+    margin-right: 15px; /* Space between image and the edge of the navbar */
+    margin-top: 5px; /* Fixed typo from '5pX' to '5px' */
+}
+
+.mainheadstart {
+    margin-left: 15px;
+    padding: 0;
+}
+
+.mainheadstart h3 {
+    margin-top: 20px;
+    padding: 0;
+    font-size: 1em; /* Adjust as needed */
+}
+
+main {
+    display: flex;
+    height: calc(100vh - 60px);
+    margin-left: 15px;
+}
+
+ul#contacts {
+    list-style-type: none; /* Removes default bullet points */
+    padding: 0;
+    margin: 0;
+    flex:0.4;
+}
+
+li {
+    /* Adds space between each list item */
+    list-style: none;
+    padding: 15px;
+    border: 1px solid #ccc; /* Optional: add a border around each contact */
+    border-radius: 1px;
+    cursor: pointer;
+}
+
+.contact-name {
+    font-size: 1.2em; /* Larger and bold */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contact-info {
+    
+    font-size: 0.9em; /* Smaller and regular */
+    color: gray;
+}
+
+li:hover {
+    background-color: #bbdefb;
+}
+
+.disp {
+    display: grid;
+    gap: 0.5em;
+}
+
+#contactDetails {
+    display: inline-block;
+    position: relative;
+    margin-left: 80px;
+    width: 100%;
+    padding: 20px;
+    overflow-y: auto;
+    gap:1em;
+}
+
+#contactDetails h2 {
+    margin-top: 0;
+    margin-bottom: 10px; /* Space below the name */
+}
+#contactDetails p {
+    margin: 10px 0; /* Space above and below each paragraph */
+}
+
+
+p.moblanddis {
+    line-height: 1.2; /* Adjust line height if needed */
+}
+
+.contact-info {
+    margin-bottom: 10px; /* Space below each contact info item */
+}
+
+/* Edit and Delete Button Styles */
+.contact-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.contact-name {
+    font-size: 1.5em; /* Adjust font size for the contact name */
+    font-weight: bold;
+    margin: 0; /* Remove default margin */
+}
+
+.action-container {
+    display: flex;
+    gap: 1.5em;
+}
+
+.action-container img,
+.action-container button {
+    cursor: pointer; /* Change cursor to pointer on hover */
+    border: none; /* Remove default button border */
+    background: transparent; /* Remove button background */
+    padding: 0; /* Remove button padding */
+    height: 20px; /* Adjust height of the buttons and icons */
+    width: 20px; /* Adjust width of the buttons and icons */
+}
+
+
+.action-container button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+#editSection {
+    display: none;
+}
+
+/* Existing CSS */
+
+#editSection {
+    display: none;
+}
+
+.edit-form {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+    
+}
+
+#editLabel{
+    color: black;
+    font-size: large;
+}
+
+input[type=text], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  
+  }
+  textarea {
+    width: 100%;
+    height: 80px;
+    padding: 12px 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+  }
+  .moblanddis {
+    display: flex;
+    gap: 5em;
+    
+    }
+   #editLandline, #editMobile{
+    display: inline-block;
+     width: 100%;
+    } 
+#saveButton {
+    background-color: rgb(11, 153, 11);
+    color: white;
+   border-color: green;
+    width: 100px;
+    padding: 5px;
+    font-size: large;
+    margin-top: 40px;
+    margin-left: 50px;
+    border-radius: 6px;
+    
+}
+
+#saveButton:hover{
+    background-color: darkgreen;
+}
+#cancelButton {
+    background-color: rgb(11, 153, 11);
+    color: white;
+    border-color: green;
+    width: 100px;
+    padding: 5px;
+    font-size: large;
+    margin-top:40px ;
+    margin-left: 40px;
+    border-radius: 6px;
+}
+
+#cancelButton:hover {
+    background-color: darkgreen;
+}
+#saveAddButton{
+    background-color: rgb(11, 153, 11);
+    color: white;
+   border-color: green;
+    width: 100px;
+    padding: 5px;
+    font-size: large;
+    margin-top: 40px;
+    margin-left: 50px;
+    border-radius: 6px;
+}
+#cancelAddButton{
+    background-color: rgb(11, 153, 11);
+    color: white;
+    border-color: green;
+    width: 100px;
+    padding: 5px;
+    font-size: large;
+    margin-top:40px ;
+    margin-left: 40px;
+    border-radius: 6px;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Book</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header>
+        <h1 class="tophead">Address Book</h1>
+    </header>
+    <nav class="navbar">
+        <button id="homeBtn">HOME</button>
+        <button id="addContactButton">+ADD</button>
+        <!--<div class="nav-icon">
+            <img src="/Photos/blog-icon.png" alt="Icon" class="icon-image">
+        </div>-->
+    </nav>
+    <div class="mainheadstart">
+        <h3>CONTACTS</h3>
+    </div>
+    <main>
+        <ul id="contacts">
+            <!-- Contacts will be dynamically added here by TypeScript -->
+        </ul>
+        <section>
+            <div id="contactDetails">
+                <!-- Contact details will be displayed here when a contact is clicked -->
+            </div>
+        </section>
+        <!-- Overlay for forms -->
+        <div id="formOverlay" class="form-overlay">
+            <div id="formContainer" class="form-container">
+                <!-- Forms will be dynamically added here by TypeScript -->
+            </div>
+        </div>
+    </main>
+    <script src="/dist/home.js"></script>
+</body>
+</html>

@@ -157,6 +157,9 @@ p.moblanddis {
     cursor: pointer;
     padding: 0;
 }
+.selected {
+    background-color: #d0e6f6;
+}
 
 #editSection {
     display: none;

@@ -55,6 +55,7 @@ document.body.appendChild(addSection);
 
 let currentContactIndex: number | null = null;
 
+//Function to Display the details of the contacts
 function displayContactDetails(index: number) {
     const contact = contacts[index];
     currentContactIndex = index;
@@ -102,21 +103,21 @@ function displayContactDetails(index: number) {
         });
     }
 }
-
+// function for popping out edit form on clicking
 function showEditForm(index: number) {
     const contact = contacts[index];
     editSection.innerHTML = `
         <h2>Edit Contact</h2>
         <form id="editForm">
-            <label id="editLabel">Name: <br>
+            <label id="editLabel">Name:* <br>
             <input type="text" id="editName" id="editInput" value="${contact.name}" required /></label><br>
-            <label id="editLabel">Email: <br> <input type="email" id="editEmail" id="editInput" value="${contact.email}" required /></label><br>
+            <label id="editLabel">Email:* <br> <input type="email" id="editEmail" id="editInput" value="${contact.email}" required /></label><br>
             <div class="moblanddis">
-                <label id="editLabel"><span>Mobile: <br><input type="text" id="editMobile" value="${contact.mobile}" required /></label></span>
+                <label id="editLabel"><span>Mobile:* <br><input type="text" id="editMobile" value="${contact.mobile}" required /></label></span>
                 ${contact.landline ? `<label id="editLabel"><span>Landline:<br><input type="text" id="editLandline" value=" ${contact.landline}" required /></label></span>` : ''}
             </div>
             <label id="editLabel">Website: <br><input type="text" id="editWebsite" id="editInput" value="${contact.website}" /></label><br>
-            <label id="editLabel">Address: <br><textarea id="editAddress" id="editInput" required>${contact.address.replace(/<br>/g, '\n')}</textarea></label><br>
+            <label id="editLabel">Address:* <br><textarea id="editAddress" id="editInput" required>${contact.address.replace(/<br>/g, '\n')}</textarea></label><br>
             <button type="button" id="saveButton">Save</button>
             <button type="button" id="cancelButton">Cancel</button>
         </form>
@@ -157,13 +158,13 @@ function showEditForm(index: number) {
         enableContactSelection();
     });
 }
-
+// function : when edit/Add form  is opened enable the user to select other contact after  user press cancel or save or add
 function enableContactSelection() {
     // Re-enable all contact list items
     const contactItems = document.querySelectorAll('#contacts li');
     contactItems.forEach(item => {
         const htmlItem = item as HTMLElement;
-        htmlItem.classList.remove('disabled');
+        htmlItem.classList.remove('disabled');//when edit/Add form  is opened disabling the user to select other contact until unless user press cancel or save or add
         htmlItem.style.pointerEvents = 'auto';
     });
 }
@@ -224,8 +225,15 @@ function deleteContact(index: number) {
     if (confirm('Are you sure you want to delete this contact?')) {
         contacts.splice(index, 1);
 
-        updateContactList();
-        contactDetailsSection.style.display = 'none';
+        if (contacts.length > 0) {
+            currentContactIndex = index > 0 ? index - 1 : 0;  // Adjusting the  index
+            updateContactList();
+            displayContactDetails(currentContactIndex);
+            highlightSelectedContact(currentContactIndex);
+        } else {
+            contactDetailsSection.style.display = 'none';
+        }
+
         editSection.style.display = 'none';
     }
 }
@@ -235,20 +243,20 @@ const addContactButton = document.getElementById('addContactButton') as HTMLButt
 addContactButton.addEventListener('click', () => {
     showAddForm();
 });
-
+// function for adding form to pop up and let user add new contact
 function showAddForm() {
     addSection.innerHTML = `
         <h2>Add New Contact</h2>
         <form id="addForm">
-            <label id="editLabel">Name: <br>
+            <label id="editLabel">Name:* <br>
             <input type="text" id="addName" required /></label><br>
-            <label id="editLabel">Email: <br> <input type="email" id="addEmail" required /></label><br>
+            <label id="editLabel">Email:* <br> <input type="email" id="addEmail" required /></label><br>
             <div class="moblanddis">
-                <label id="editLabel"><span>Mobile: <br><input type="text" id="addMobile" required /></label></span>
+                <label id="editLabel"><span>Mobile:* <br><input type="text" id="addMobile" required /></label></span>
                 <label id="editLabel"><span>Landline: <br><input type="text" id="addLandline" /></label></span>
             </div>
             <label id="editLabel">Website: <br><input type="text" id="addWebsite" /></label><br>
-            <label id="editLabel">Address: <br><textarea id="addAddress" required></textarea></label><br>
+            <label id="editLabel">Address:* <br><textarea id="addAddress" required></textarea></label><br>
             <button type="button" id="saveAddButton">Add</button>
             <button type="button" id="cancelAddButton">Cancel</button>
         </form>
@@ -326,7 +334,10 @@ function saveNewContact() {
     };
 
     contacts.push(newContact);
+    currentContactIndex = contacts.length - 1;  // Setting  the new contact as the current to highlight
     updateContactList();
+    displayContactDetails(currentContactIndex);
+    highlightSelectedContact(currentContactIndex);
     addSection.style.display = 'none';
 }
 
@@ -347,12 +358,20 @@ function updateContactList() {
         
         contactItem.addEventListener('click', () => {
             displayContactDetails(index);
+            highlightSelectedContact(index);
         });
-        
+        if (index == currentContactIndex){
+            contactItem.classList.add('selected');
+        }
         contactsDiv.appendChild(contactItem);
     });
 }
-
+function highlightSelectedContact(index: number) {
+    const contactItems = document.querySelectorAll('#contacts li');
+    contactItems.forEach((item, i) => {
+        item.classList.toggle('selected', i === index);
+    });
+}
 // Initialize the contact list
 updateContactList();
 
@@ -361,7 +380,7 @@ const homeButton = document.getElementById('homeBtn') as HTMLButtonElement;
 homeButton.addEventListener('click', () => {
     resetToHomeView();
 });
-
+//when user click home it should direct to home 
 function resetToHomeView() {
     // Hide the contact details and form sections
     contactDetailsSection.style.display = 'none';
